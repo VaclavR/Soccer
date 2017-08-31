@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <div class="form-group">
+    <label for="name">Player Name</label>
+    <input type="text"
+      id="name"
+      class="form-control"
+      name="name"
+      ngModel
+      required
+      #nameCtrl="ngModel">
+    <span class="help-block" *ngIf="nameCtrl.invalid && nameCtrl.touched">Please enter a name!</span>
+  </div>
+  <div class="form-group">
+    <label for="position">Player Position</label>
+    <select name="position"
+      id="position"
+      class="form-control"
+      ngModel>
+      <option *ngFor="let position of getPositions()" [value]="position.value">
+        {{ position.display }}
+      </option>
+    </select>
+    <br>
+    <button class="btn btn-primary" [disabled]="form.invalid">Create</button>
+  </div>
+</form>
